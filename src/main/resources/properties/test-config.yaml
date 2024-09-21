@@ -1,0 +1,12 @@
+https:
+  host: "0.0.0.0"
+  port: "8082"
+  
+rds:
+   host:"poprocess.cv6ma4emeasv.us-east-1.rds.amazonaws.com"
+   port:"1521"
+   user:"![LzbpBKdtjpYNnnrw9qAPRA==]"
+   password:"![mwhl6QYxYbLDaXMH5SgE/g==]"
+   sevicnname:"ORCL"
+   
+functionalIdentifier: "qbotica-po" 

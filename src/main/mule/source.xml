@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	
+	<flow name="sourceFlow" doc:id="c55c1b61-e2c8-4e3b-ace8-2fd735b7bbdd" >
+		<http:listener doc:name="Listener" doc:id="e249e469-c343-4200-b894-8755137e0a4b" config-ref="qbotica-po-sapi-httpListenerConfig" path="/insert"/>
+		<db:insert doc:name="Insert" doc:id="d66b07f3-978b-4bad-864a-4e5c364e6d47" config-ref="Database_Config">
+			<db:sql ><![CDATA[INSERT INTO poprocess(CUSTOMER_NO,CUSTOMER_PO_NO,ECT_PO_NUMBER,EXPECTED_SHIP_DATE,DOCK_DATE,Order_Date,SHIP_TO_NAME,SHIP_TO_ADDRESS,PO_LINE_NO,QUANTITY_ORDERED,UNIT_PRICE,CUSTOMER_PART_NO,COPELAND_MODEL_NO,ITEM_DESCRIPTION,REJECTED_MESSAGE)
+VALUES(:customerNo,:CUSTOMERPONO,:ECTPONUMBER,:EXPECTEDSHIPDATE,:DockDate,:OrderDate,:SHIPTONAME,:SHIPTOADDRESS,:POLINENO,:QUANTITYORDERED,:UNITPRICE,:CUSTOMERPARTNO,:COPELANDMODELNO,:ITEMDESCRIPTION,:REJECTEDMESSAGE)]]></db:sql>
+		</db:insert>
+	 </flow>
+</mule>
