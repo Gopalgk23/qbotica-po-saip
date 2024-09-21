@@ -4,7 +4,7 @@
 
 	<groupId>com.mycompany</groupId>
 	<artifactId>qbotica-po-sapi</artifactId>
-	<version>1.2.26</version>
+	<version>1.2.27</version>
 	<packaging>mule-application</packaging>
 
 	<name>qbotica-po-sapi</name>
