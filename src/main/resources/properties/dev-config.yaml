@@ -1,12 +1,12 @@
 https:
-  host: "0.0.0.0"
-  port: "8082"
+ host: "0.0.0.0"
+ port: "8082"
   
 rds:
-   host:"poprocess.cv6ma4emeasv.us-east-1.rds.amazonaws.com"
-   port:"1521"
-   user:"![LzbpBKdtjpYNnnrw9qAPRA==]"
-   password:"![mwhl6QYxYbLDaXMH5SgE/g==]"
-   sevicnname:"ORCL"
-   
+ host: "poprocess.cv6ma4emeasv.us-east-1.rds.amazonaws.com"
+ port: "1521"
+ user: "![LzbpBKdtjpYNnnrw9qAPRA==]"
+ password: "![mwhl6QYxYbLDaXMH5SgE/g==]"
+ servicename: "ORCL"
+ insert: "INSERT into PROGRAM(CUSTOMER_NO,CUSTOMER_PO_NO,ECT_PO_NUMBER,EXPECTED_SHIP_DATE,DOCK_DATE,Order_Date,SHIP_TO_NAME,SHIP_TO_ADDRESS,PO_LINE_NO,QUANTITY_ORDERED,UNIT_PRICE,CUSTOMER_PART_NO,COPELAND_MODEL_NO,ITEM_DESCRIPTION,REJECTED_MESSAGE,STATUS_FLAG) VALUES(:customerNo,:CUSTOMERPONO,:ECTPONUMBER,:EXPECTEDSHIPDATE,:DockDate,:OrderDate,:SHIPTONAME,:SHIPTOADDRESS,:POLINENO,:QUANTITYORDERED,:UNITPRICE,:CUSTOMERPARTNO,:COPELANDMODELNO,:ITEMDESCRIPTION,:REJECTEDMESSAGE,:STATUS_FLAG)"
 functionalIdentifier: "qbotica-po"   

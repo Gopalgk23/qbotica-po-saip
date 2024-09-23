@@ -11,10 +11,9 @@ http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/m
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd
 http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd">
-	<configuration-properties doc:name="Configuration properties" doc:id="54d49e5b-f38e-43e6-b06e-bbc0bb9db876" file="properties/${env}-config.yaml" />
 	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="5a4af351-d0d7-4b0b-9b44-442bf22d996e" file="properties/${env}-config.yaml" key="${securekey}" />
     <http:listener-config name="qbotica-po-sapi-httpListenerConfig">
-        <http:listener-connection host="${https.host}" port="${https.port}" protocol="HTTPS">
+        <http:listener-connection host="${secure::https.host}" port="${secure::https.port}" protocol="HTTPS">
 			<tls:context >
 				<tls:key-store type="jks" path="certificate/serverkeystore.jks" alias="myserver" keyPassword="keypwd" password="storepwd" />
 			</tls:context>
@@ -24,7 +23,7 @@ http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/
 	<global-property doc:name="Global Property" doc:id="33f7fdac-b779-4e0d-829f-0c30394899bf" name="env" value="dev" />
 	<global-property doc:name="Global Property" doc:id="0c2bc793-b460-483d-9d6f-e72b7211c165" name="securekey" value="gopal12345678910" />
      <db:config name="Database_Config" doc:name="Database Config" doc:id="b64af7be-2256-492d-ab39-2f8da684f148" >
-		<db:oracle-connection host="poprocess.cv6ma4emeasv.us-east-1.rds.amazonaws.com" user="admin" password="Dbmule147963" serviceName="ORCL" />
+		<db:oracle-connection host="${secure::rds.host}" user="${secure::rds.user}" password="${secure::rds.password}" serviceName="${secure::rds.servicename}" port="${secure::rds.port}"/>
 	</db:config> 
 
 </mule>

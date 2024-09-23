@@ -1,0 +1,11 @@
+%dw 2.0
+
+type auto_45394e1e_90b1_4eee_afa3_a704b896be99_Input_Variables_logvar = {|
+  appName: String, 
+  description: String, 
+  functionalIdentifier: String, 
+  correlationId: String, 
+  businessIdentifier1: String, 
+  businessIdentifier1Value: Null
+|}
+
