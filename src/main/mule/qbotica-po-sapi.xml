@@ -139,6 +139,15 @@ output application/json
 		</ee:transform>
 		<logger level="INFO" doc:name="Logg _var" doc:id="cdd609df-8d8e-4878-a818-9c944a853acb" message="#[vars.logvar]" />
 		<logger level="INFO" doc:name="Logger" doc:id="549a9a8f-f826-4f20-9889-2e45a623e6d4" message="#[payload]"/>
+		<ee:transform doc:name="Transform Message" doc:id="4fde9426-5589-4a9c-a01a-859b6375f009" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload[0]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<flow-ref doc:name="Flow Reference" doc:id="910935ac-dd02-43f8-9a0a-0855f66b2446" name="DbSubFlow"/>
 		<ee:transform doc:name="qbotica-po-papi-Receive meassagesflow-logvar1" doc:id="1fbfa0c7-8f57-4900-986e-7223e4ddbe84" >
 			<ee:message />
 			<ee:variables >
