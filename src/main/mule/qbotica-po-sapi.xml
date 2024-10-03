@@ -124,46 +124,24 @@ output application/json
 		<ee:transform doc:name="qbotica-po-papi-Receive meassagesflow-logvar" doc:id="bf9a9a22-42fb-4686-a236-9e9c59437a78" >
 			<ee:message />
 			<ee:variables >
-				<ee:set-variable variableName="logvar" ><![CDATA[%dw 2.0
-output application/json
----
-{
-  appName: Mule::p('app.name'),
-  description :"starting of reprocess qbotica-po-sapi-config",
-  functionalIdentifier: Mule::p('functionalIdentifier'),
-  correlationId: correlationId,
-  businessIdentifier1: "message id ",
-  businessIdentifier1Value: attributes.'sqs.message.id'
-}]]></ee:set-variable>
+				<ee:set-variable resource="dwl/logvarstart.dwl" variableName="logvar" />
 			</ee:variables>
 		</ee:transform>
 		<logger level="INFO" doc:name="Logg _var" doc:id="cdd609df-8d8e-4878-a818-9c944a853acb" message="#[vars.logvar]" />
 		<logger level="INFO" doc:name="Logger" doc:id="549a9a8f-f826-4f20-9889-2e45a623e6d4" message="#[payload]"/>
 		<ee:transform doc:name="Transform Message" doc:id="4fde9426-5589-4a9c-a01a-859b6375f009" >
 			<ee:message >
-				<ee:set-payload ><![CDATA[%dw 2.0
-output application/json
----
-payload[0]]]></ee:set-payload>
+				<ee:set-payload resource="dwl/index.dwl" />
 			</ee:message>
 		</ee:transform>
 		<flow-ref doc:name="Flow Reference" doc:id="910935ac-dd02-43f8-9a0a-0855f66b2446" name="DbSubFlow"/>
 		<ee:transform doc:name="qbotica-po-papi-Receive meassagesflow-logvar1" doc:id="1fbfa0c7-8f57-4900-986e-7223e4ddbe84" >
 			<ee:message />
 			<ee:variables >
-				<ee:set-variable variableName="logvar" ><![CDATA[%dw 2.0
-output application/json
----
-{
-  appName: Mule::p('app.name'),
-  description :"ending of reprocess qbotica-po-sapi-config",
-  functionalIdentifier: Mule::p('functionalIdentifier'),
-  correlationId: vars.logvar.correlationId,
-  businessIdentifier1: "message id ",
-  businessIdentifier1Value: attributes.'sqs.message.id'
-}]]></ee:set-variable>
+				<ee:set-variable resource="dwl/logvarend.dwl" variableName="logvar" />
 			</ee:variables>
 		</ee:transform>
 		<logger level="INFO" doc:name="Logg _var1" doc:id="a4816652-3dbc-4187-b8e7-4a242474c500" message="#[vars.logvar]" />
+		<error-handler ref="gehError_Handler" />
     </flow>
 </mule>
