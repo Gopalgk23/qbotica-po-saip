@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	<error-handler name="gehError_Handler" doc:id="64de4158-03f6-46c1-80ce-8ee8dcede2ed" >
+		<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="85575d46-98f3-4cd4-b9db-9f33f1668c5d" type="ANY">
+			<logger level="INFO" doc:name="Logger" doc:id="21eb09e3-058e-47e4-a3a0-2278849153f7" message='#["DB  connection failed"]'/>
+		</on-error-continue>
+	</error-handler>
+</mule>
