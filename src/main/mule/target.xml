@@ -6,9 +6,11 @@
 http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
 	<sub-flow name="DbSubFlow" doc:id="45394e1e-90b1-4eee-afa3-a704b896be99" >
-		<db:bulk-insert doc:name="Bulk insert" doc:id="5a76117b-4685-4c96-bf49-e044baa2176e" config-ref="Database_Config">
-			<db:sql ><![CDATA[insert into PROGRAM(CUSTOMER_NO,CUSTOMER_PO_NO,ECT_PO_NUMBER,EXPECTED_SHIP_DATE,DOCK_DATE,Order_Date,SHIP_TO_NAME,SHIP_TO_ADDRESS,PO_LINE_NO,QUANTITY_ORDERED,UNIT_PRICE,CUSTOMER_PART_NO,COPELAND_MODEL_NO,ITEM_DESCRIPTION,REJECTED_MESSAGE,STATUS_FLAG)
+		<until-successful maxRetries="${secure::general.maxretries}" doc:name="Until Successful" doc:id="622334f6-c068-47de-8dcd-acb06d5f51a6" millisBetweenRetries="${secure::general.milisecondsbetweenretries}">
+			<db:bulk-insert doc:name="Bulk insert" doc:id="5a76117b-4685-4c96-bf49-e044baa2176e" config-ref="Database_Config">
+			<db:sql><![CDATA[insert into PROGRAM(CUSTOMER_NO,CUSTOMER_PO_NO,ECT_PO_NUMBER,EXPECTED_SHIP_DATE,DOCK_DATE,Order_Date,SHIP_TO_NAME,SHIP_TO_ADDRESS,PO_LINE_NO,QUANTITY_ORDERED,UNIT_PRICE,CUSTOMER_PART_NO,COPELAND_MODEL_NO,ITEM_DESCRIPTION,REJECTED_MESSAGE,STATUS_FLAG)
 VALUES(:customerNo,:CUSTOMERPONO,:ECTPONUMBER,:EXPECTEDSHIPDATE,:DockDate,:OrderDate,:SHIPTONAME,:SHIPTOADDRESS,:POLINENO,:QUANTITYORDERED,:UNITPRICE,:CUSTOMERPARTNO,:COPELANDMODELNO,:ITEMDESCRIPTION,:REJECTEDMESSAGE,:STATUS_FLAG)]]></db:sql>
 		</db:bulk-insert>
+		</until-successful>
 	</sub-flow>
 </mule>
