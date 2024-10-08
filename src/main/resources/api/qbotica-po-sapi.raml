@@ -1,8 +1,29 @@
 #%RAML 1.0
 title: qbotica-po-sapi
+version: v1
+description: po process
+protocols: [HTTPS]
+traits:
+  client-id-required:
+    headers:
+      client_id:
+        type: string
+        description: client Id provided by API Manager
+        required: true
+      client_secret:
+        type: string
+        required: true
+        description: The Client secret key provided by the API Manager
+    responses:
+      401:
+        description: Unauthorized or invalid client application credentials
+      500:
+        description: Bad response from authorization server, or WSDL SOAP Fault error
 /poprocessapi:
   description: This is used to get  detailsfrom papi file
   post:
+    is:
+      - client-id-required 
     body:
       application/json:
        example: !include example/qbotica-po-sapi-example.raml
@@ -14,3 +35,13 @@ title: qbotica-po-sapi
               {
                 "message" : "success"
               }
+/healthcheck:
+  description: healthcheck
+  get:   
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              message: healthcheck successfull              
+              

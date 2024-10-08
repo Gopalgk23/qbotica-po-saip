@@ -14,6 +14,9 @@ http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/
 	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="5a4af351-d0d7-4b0b-9b44-442bf22d996e" file="properties/${env}-config.yaml" key="${securekey}" />
     <http:listener-config name="qbotica-po-sapi-httpListenerConfig">
         <http:listener-connection host="${secure::https.host}" port="${secure::https.port}" protocol="HTTPS">
+			<reconnection >
+				<reconnect frequency="${secure::reconnection.frequency}" count="${secure::reconnection.reconnectionattempts}" />
+			</reconnection>
 			<tls:context >
 				<tls:key-store type="jks" path="certificate/serverkeystore.jks" alias="myserver" keyPassword="keypwd" password="storepwd" />
 			</tls:context>
@@ -23,9 +26,13 @@ http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/
 	<global-property doc:name="Global Property" doc:id="33f7fdac-b779-4e0d-829f-0c30394899bf" name="env" value="dev" />
 	<global-property doc:name="Global Property" doc:id="0c2bc793-b460-483d-9d6f-e72b7211c165" name="securekey" value="gopal12345678910" />
      <db:config name="Database_Config" doc:name="Database Config" doc:id="b64af7be-2256-492d-ab39-2f8da684f148" >
-		<db:oracle-connection host="${secure::rds.host}" user="${secure::rds.user}" password="${secure::rds.password}" serviceName="${secure::rds.servicename}" port="${secure::rds.port}"/>
+		<db:oracle-connection host="${secure::rds.host}" user="${secure::rds.user}" password="${secure::rds.password}" serviceName="${secure::rds.servicename}" port="${secure::rds.port}">
+			<reconnection >
+				<reconnect frequency="${secure::reconnection.frequency}" count="${secure::reconnection.reconnectionattempts}" />
+			</reconnection>
+		</db:oracle-connection>
 	</db:config>
-	<configuration doc:name="Configuration" doc:id="6f63678f-14df-417e-8023-84f2d6e8a01e" />
+	
 	<configuration doc:name="Configuration" doc:id="b06f2c06-7b9c-4901-91bc-9501f93c99e6" defaultErrorHandler-ref="gehError_Handler" /> 
 
 </mule>
